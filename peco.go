@@ -472,6 +472,9 @@ func (p *Peco) SetupSource(ctx context.Context) (s *Source, err error) {
 		}
 		in = f
 		filename = p.args[1]
+		if util.IsNamedPipe(filename) {
+			isInfinite = true
+		}
 	case !util.IsTty(p.Stdin):
 		if pdebug.Enabled {
 			pdebug.Printf("Using p.Stdin as input")
